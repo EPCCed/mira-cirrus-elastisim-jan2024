@@ -10,8 +10,8 @@ import argparse
 
 # Constants - currently for Cirrus CPU
 nCoreTot = 13248 # Total cores available
-timeLower = 5000 # Start time of analysis window
-timeUpper= 23000 # End time of analysis window
+timeLower = 500000 # Start time of analysis window
+timeUpper= 2800000 # End time of analysis window
 
 # Parse command line arguments
 parser = argparse.ArgumentParser(description='Analyse results of Elastisim scheduler simulation.')
@@ -110,10 +110,10 @@ print(f"        %usage = {100 * stats['usageFraction']}")
 print(f" residual work = {stats['residualWork']}")
 
 slice_df = job_df.loc[(job_df['Start Time'] >= timeLower) & (job_df['Start Time'] <= timeUpper)]
-stats['minWait'] = slice_df['Wait Time'].min()
-stats['medianWait'] = slice_df['Wait Time'].median()
-stats['maxWait'] = slice_df['Wait Time'].max()
-stats['meanWait'] = slice_df['Wait Time'].mean()
+stats['minWait'] = slice_df['Wait Time'].min() / 3600
+stats['medianWait'] = slice_df['Wait Time'].median() / 3600
+stats['maxWait'] = slice_df['Wait Time'].max() / 3600
+stats['meanWait'] = slice_df['Wait Time'].mean() / 3600
 
 print(f"\nWait time statistics:")
 print(f"    min = {stats['minWait']}")
@@ -121,10 +121,10 @@ print(f" median = {stats['medianWait']}")
 print(f"    max = {stats['maxWait']}")
 print(f"   mean = {stats['meanWait']}")
 
-stats['minTurnaroundTime'] = slice_df['Turnaround Time'].min()
-stats['medianTurnaroundTime'] = slice_df['Turnaround Time'].median()
-stats['maxTurnaroundTime'] = slice_df['Turnaround Time'].max()
-stats['meanTurnaroundTime'] = slice_df['Turnaround Time'].mean()
+stats['minTurnaroundTime'] = slice_df['Turnaround Time'].min() / 3600
+stats['medianTurnaroundTime'] = slice_df['Turnaround Time'].median() / 3600
+stats['maxTurnaroundTime'] = slice_df['Turnaround Time'].max() / 3600
+stats['meanTurnaroundTime'] = slice_df['Turnaround Time'].mean() / 3600
 
 print(f"\nTurnaround time statistics:")
 print(f"    min = {stats['minTurnaroundTime']}")

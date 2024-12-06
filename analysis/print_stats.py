@@ -18,3 +18,5 @@ stats_df = stats_df.transpose()
 stats_df.columns = nameList
 
 print(stats_df.to_markdown(floatfmt=".3f"))
+
+stats_df.to_csv('stats.csv')
