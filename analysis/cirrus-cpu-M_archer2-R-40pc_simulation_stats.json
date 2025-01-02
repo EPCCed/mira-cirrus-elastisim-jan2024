@@ -1,0 +1,21 @@
+{
+    "cirrus-cpu-M_archer2-R-40pc": {
+        "nJobStart": 41449,
+        "minLoad": "6879",
+        "maxLoad": "13248",
+        "medianLoad": "13247",
+        "meanLoad": "13183",
+        "usageIncluded": 8422657.098888889,
+        "usageExcluded": 2288655.325833333,
+        "usageFraction": 0.9951154417401806,
+        "residualWork": 1658559.7838888888,
+        "minWait": -6.467527777777778e-14,
+        "medianWait": 26.396944444444443,
+        "maxWait": 69.14611111111111,
+        "meanWait": 28.436454732247928,
+        "minTurnaroundTime": 0.0001388888888888889,
+        "medianTurnaroundTime": 28.93138888888889,
+        "maxTurnaroundTime": 437.31111111111113,
+        "meanTurnaroundTime": 30.861389247562602
+    }
+}
