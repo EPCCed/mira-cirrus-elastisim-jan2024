@@ -18,7 +18,7 @@
         "maxTurnaroundTime": 336.15277777777777,
         "meanTurnaroundTime": 4.560315022249944
     },
-    "Simulation (Rigid: R)": {
+    "Cirrus (Rigid: R)": {
         "nJobStart": 38916,
         "minLoad": "3974",
         "maxLoad": "13248",
@@ -37,7 +37,7 @@
         "maxTurnaroundTime": 350.6722222222222,
         "meanTurnaroundTime": 9.727336164216947
     },
-    "Simulation (Moldable: M)": {
+    "Cirrus (Moldable: M)": {
         "nJobStart": 38944,
         "minLoad": "2518",
         "maxLoad": "13248",
