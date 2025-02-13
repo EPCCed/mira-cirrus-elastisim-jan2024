@@ -1,0 +1,21 @@
+{
+    "elastisim": {
+        "nJobStart": 38944,
+        "minLoad": "2518",
+        "maxLoad": "13248",
+        "medianLoad": "12961",
+        "meanLoad": "11011",
+        "usageIncluded": 7035124.89,
+        "usageExcluded": 874749.0483333333,
+        "usageFraction": 0.831182052221172,
+        "residualWork": 427637.0025,
+        "minWait": -3.2337499999999997e-13,
+        "medianWait": 2.284705555555555,
+        "maxWait": 27.432222222222222,
+        "meanWait": 4.856379410094551,
+        "minTurnaroundTime": 0.0001388888888888889,
+        "medianTurnaroundTime": 3.2085833333333333,
+        "maxTurnaroundTime": 518.4666666666667,
+        "meanTurnaroundTime": 6.977648958440324
+    }
+}
