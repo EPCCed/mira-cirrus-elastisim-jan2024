@@ -23,6 +23,5 @@ docker exec $model python3 /algorithm/algorithm.py
 
 echo "[$(date)] Finished running $model"
 
-docker logs $model
 
 
