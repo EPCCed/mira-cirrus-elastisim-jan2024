@@ -1,21 +1,21 @@
 {
     "cirrus-cpu-M_archer2-R-70pc": {
-        "nJobStart": 41316,
-        "minLoad": "12099",
-        "maxLoad": "13248",
-        "medianLoad": "13239",
-        "meanLoad": "13210",
-        "usageIncluded": 8440068.489444444,
-        "usageExcluded": 4371235.755,
-        "usageFraction": 0.9971725531007142,
-        "residualWork": 3591784.8230555556,
-        "minWait": 5.519222222222222,
-        "medianWait": 83.81861111111111,
-        "maxWait": 134.90333333333334,
-        "meanWait": 65.63884878806704,
-        "minTurnaroundTime": 5.945833333333334,
-        "medianTurnaroundTime": 85.22638888888889,
-        "maxTurnaroundTime": 532.5944444444444,
-        "meanTurnaroundTime": 67.89286678822302
+        "nJobStart": 40571,
+        "minLoad": "11595",
+        "maxLoad": "12745",
+        "medianLoad": "12737",
+        "meanLoad": "12706",
+        "usageIncluded": 8117789.009722223,
+        "usageExcluded": 4693892.148055555,
+        "usageFraction": 0.9590960550238921,
+        "residualWork": 3924282.7158333333,
+        "minWait": 8.501888888888889,
+        "medianWait": 96.67916666666666,
+        "maxWait": 156.60666666666665,
+        "meanWait": 75.99402630025827,
+        "minTurnaroundTime": 8.932277777777777,
+        "medianTurnaroundTime": 98.02777777777777,
+        "maxTurnaroundTime": 556.9611111111111,
+        "meanTurnaroundTime": 78.22196203774455
     }
 }

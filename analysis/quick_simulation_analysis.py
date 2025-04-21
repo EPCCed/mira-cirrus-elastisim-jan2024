@@ -25,8 +25,7 @@ jsonInputName = args.inputjson
 csvJobStatsName = f'{args.datadir}/job_statistics.csv'
 csvNodeUtilizationName = f'{args.datadir}/node_utilization.csv'
 
-usagePlotFile = f'{args.prefix}_simulated_load.png'
-usagePlotFilePeriod = f'{args.prefix}_simulated_load_period.png'
+histSizePlotFile = f'{args.prefix}_size_hist.png'
 statsJSON = f'{args.prefix}_simulation_stats.json'
 
 csvfile = open(csvJobStatsName, 'r')
@@ -76,7 +75,7 @@ job_df['Makespan'] = job_df['Makespan'].astype(float)
 job_df['Coreh'] = job_df['Makespan'] * job_df['Nodes'] / 3600.0
 job_df['Turnaround Time'] = job_df['Turnaround Time'].astype(float)
 job_df['Efficiency'] = job_df['Makespan'] / job_df['Turnaround Time']
-job_df['Size Change'] = job_df['Nodes'] - job_df['BaseNodes']
+job_df['Fractional Size Change'] = job_df['Nodes']/job_df['BaseNodes']
 
 nrigid = len(job_df.loc[job_df['Nodes'] == job_df['BaseNodes']])
 nmoldable = len(job_df.loc[job_df['Nodes'] != job_df['BaseNodes']])
@@ -90,51 +89,11 @@ print(f'Number of jobs molded = {nmoldable}/{ntot} ({100*nmoldable/ntot:.2f}%)')
 print(f'Number of jobs larger = {nlarger}/{ntot} ({100*nlarger/ntot:.2f}%)')
 print(f'Number of jobs smaller = {nsmaller}/{ntot} ({100*nsmaller/ntot:.2f}%)')
 
-load_a = np.zeros(maxtime+1, dtype=int)
-load_cirrus_a = np.zeros(maxtime+1, dtype=int)
-load_archer2_a = np.zeros(maxtime+1, dtype=int)
-for job in jobList:
-    temp_a = np.zeros(maxtime+1, dtype=int)
-    istart = math.floor(float(job['Start Time']))
-    iend = math.ceil(float(job['End Time']))
-    nodes = int(job['Nodes'])
-    temp_a[istart:iend] = nodes
-    load_a = load_a + temp_a
-    if "ar2" in job['JobID']:
-        load_archer2_a = load_archer2_a + temp_a
-    else:
-        load_cirrus_a = load_cirrus_a + temp_a
-
-# With the moldable jobs, start and end times can be fractional
-# This means that when they are floor'd and ceil'd you can end
-# up with times where the load exceeds the number of cores available.
-# Rather than doing something intelligent, we clip the array so it is
-# in the correct range
-load_a = np.clip(load_a, a_min=0, a_max=nCoreTot)
-load_archer2_a = np.clip(load_archer2_a, a_min=0, a_max=nCoreTot)
-load_cirrus_a = np.clip(load_cirrus_a, a_min=0, a_max=nCoreTot)
-
-plt.figure(figsize=(15, 5))
-plt.plot(load_a, label='Overall')
-plt.plot(load_cirrus_a, label='Cirrus')
-plt.plot(load_archer2_a, label='ARCHER2')
-plt.xlabel("Time")
-plt.ylabel("Cores in use")
-plt.legend()
+sns.set_context("paper")
+sns.set_style("ticks")
+sns.histplot(data=job_df, x='Fractional Size Change', bins=50, stat='percent')
 sns.despine()
-plt.savefig(usagePlotFile, dpi=300, bbox_inches='tight')
-
-# Reduced analysis period
-plt.figure(figsize=(15, 5))
-plt.plot(load_a, label='Overall')
-plt.plot(load_cirrus_a, label='Cirrus')
-plt.plot(load_archer2_a, label='ARCHER2')
-plt.xlabel("Time")
-plt.ylabel("Cores in use")
-plt.xlim([timeLower, timeUpper])
-plt.legend()
-sns.despine()
-plt.savefig(usagePlotFilePeriod, dpi=300, bbox_inches='tight')
+plt.savefig(histSizePlotFile, dpi=300)
 
 maxUsage = (timeUpper - timeLower) * nCoreTot
 
@@ -146,25 +105,6 @@ stats['nJobStart'] = sum((job_df['Start Time'] >= timeLower) & (job_df['Start Ti
 print(f"\n\nSimulation statistics (analysis period):")
 print(f"\nJob data:")
 print(f"    nJobs = {stats['nJobStart']}")
-
-stats['minLoad'] = min(load_a[timeLower:timeUpper+1])
-stats['maxLoad'] = max(load_a[timeLower:timeUpper+1])
-stats['medianLoad'] = statistics.median(load_a[timeLower:timeUpper+1])
-stats['meanLoad'] = statistics.mean(load_a[timeLower:timeUpper+1])
-
-usageVal = sum(load_a[timeLower:timeUpper+1])
-stats['usageIncluded'] = usageVal / 3600.0
-stats['usageExcluded'] = (sum(load_a[0:timeLower]) + sum(load_a[timeUpper:])) / 3600.0
-stats['usageFraction'] = usageVal/maxUsage
-stats['residualWork'] = sum(load_a[timeUpper+1:]) / 3600
-
-print(f"\nLoad statistics:")
-print(f"           min = {stats['minLoad']}")
-print(f"        median = {stats['medianLoad']}")
-print(f"           max = {stats['maxLoad']}")
-print(f"          mean = {stats['meanLoad']}")
-print(f"        %usage = {100 * stats['usageFraction']}")
-print(f" residual work = {stats['residualWork']}")
 
 slice_df = job_df.loc[(job_df['Start Time'] >= timeLower) & (job_df['Start Time'] <= timeUpper)]
 stats['minWait'] = slice_df['Wait Time'].min() / 3600
@@ -189,7 +129,3 @@ print(f" median = {stats['medianTurnaroundTime']}")
 print(f"    max = {stats['maxTurnaroundTime']}")
 print(f"   mean = {stats['meanTurnaroundTime']}")
 
-stats_d = {}
-stats_d[args.prefix] = stats
-jsonout = open(statsJSON, 'w')
-json.dump(stats_d, jsonout, indent=4, default=str)
