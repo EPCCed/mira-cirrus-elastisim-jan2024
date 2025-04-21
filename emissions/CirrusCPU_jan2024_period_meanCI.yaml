@@ -1,0 +1,66 @@
+Measured:
+    periodLength: 31
+    load: 0.827
+    carbonIntensity: 0.020
+    efficiency: 0.9
+Cirrus Rigid (R):
+    periodLength: 31
+    load: 0.838
+    carbonIntensity: 0.020
+    efficiency: 0.9
+Cirrus Moldable (M):
+    periodLength: 31
+    load: 0.831
+    carbonIntensity: 0.020
+    efficiency: 0.9
+Cirrus M + 10% ARCHER2 R:
+    periodLength: 31
+    load: 0.888
+    carbonIntensity: 0.020
+    efficiency: 0.9
+Cirrus M + 20% ARCHER2 R:
+    periodLength: 31
+    load: 0.937
+    carbonIntensity: 0.020
+    efficiency: 0.9
+Cirrus M + 30% ARCHER2 R:
+    periodLength: 31
+    load: 0.977
+    carbonIntensity: 0.020
+    efficiency: 0.9
+Cirrus M + 40% ARCHER2 R:
+    periodLength: 31
+    load: 0.995
+    carbonIntensity: 0.020
+    efficiency: 0.9
+Cirrus M + 50% ARCHER2 R:
+    periodLength: 31
+    load: 0.997
+    carbonIntensity: 0.020
+    efficiency: 0.9
+Cirrus M + 60% ARCHER2 R:
+    periodLength: 31
+    load: 0.997
+    carbonIntensity: 0.020
+    efficiency: 0.9
+Cirrus M + 70% ARCHER2 R:
+    periodLength: 31
+    load: 0.997
+    carbonIntensity: 0.020
+    efficiency: 0.9
+Cirrus M + 80% ARCHER2 R:
+    periodLength: 31
+    load: 0.997
+    carbonIntensity: 0.020
+    efficiency: 0.9
+Cirrus M + 90% ARCHER2 R:
+    periodLength: 31
+    load: 0.997
+    carbonIntensity: 0.020
+    efficiency: 0.9
+Cirrus M + 100% ARCHER2 R:
+    periodLength: 31
+    load: 0.997
+    carbonIntensity: 0.020
+    efficiency: 0.9
+

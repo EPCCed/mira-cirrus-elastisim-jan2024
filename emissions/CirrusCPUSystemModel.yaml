@@ -1,0 +1,50 @@
+
+system:
+    name: Cirrus CPU
+    lifetime: 2922
+    components:
+        CPU compute node:
+            description: Cirrus CPU compute node
+            count: 354
+            unit: nodes
+            scope3PerUnit: 900
+            kWPerUnitLoaded: 0.410
+            kWPerUnitIdle: 0.220
+            AUComponent: true
+            AUPerComponent: 36
+            AU: coreh
+        Interconnect switch:
+            description: Cirrus CPU interconnect switch
+            count: 16
+            unit: switches
+            scope3PerUnit: 250
+            kWPerUnitLoaded: 0.250
+            kWPerUnitIdle: 0.250
+        Lustre storage (HDD):
+            description: Cirrus Lustre Storage (HDD)
+            count: 2500000
+            unit: GB
+            scope3PerUnit: 0.02
+            kWPerUnitLoaded: 0.0000016
+            kWPerUnitIdle: 0.0000016
+        RPOOL storage (SSD):
+            description: Cirrus RPOOL Storage (SSD)
+            count: 233000
+            unit: GB
+            scope3PerUnit: 0.16
+            kWPerUnitLoaded: 0.0000042
+            kWPerUnitIdle: 0.0000042
+        Ceph storage:
+            description: ARCHER2 NFS Storage
+            count: 1500000
+            unit: GB
+            scope3PerUnit: 0.02
+            kWPerUnitLoaded: 0.0000049
+            kWPerUnitIdle: 0.0000049
+        CDU:
+            description: Cirrus Coolant Distribution Units
+            count: 2
+            unit: CDU
+            scope3PerUnit: 0.0
+            kWPerUnitLoaded: 16.0
+            kWPerUnitIdle: 16.0
